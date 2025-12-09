@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/agetools/pkg/agf"
+	"agetools/pkg/agf"
 	"github.com/spf13/cobra"
 )
 

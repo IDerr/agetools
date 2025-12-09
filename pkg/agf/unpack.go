@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/agetools/pkg/lzss"
+	"agetools/pkg/lzss"
 )
 
 // UnpackResult contains all data extracted from an AGF file.

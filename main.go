@@ -1,6 +1,6 @@
 package main
 
-import "github.com/agetools/cmd"
+import "agetools/cmd"
 
 func main() {
 	cmd.Execute()

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/agetools/pkg/lzss"
+	"agetools/pkg/lzss"
 )
 
 // ExtractOptions configures the extraction process.

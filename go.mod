@@ -1,10 +1,10 @@
-module github.com/agetools
+module agetools
 
 go 1.24
 
 require (
-	github.com/blacktop/lzss v0.1.8
 	github.com/spf13/cobra v1.8.0
+	golang.org/x/text v0.21.0
 )
 
 require (

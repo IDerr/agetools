@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/agetools/pkg/lzss"
+	"agetools/pkg/lzss"
 )
 
 // PackOptions configures the packing process.
