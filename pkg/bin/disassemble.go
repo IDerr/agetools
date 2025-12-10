@@ -43,6 +43,12 @@ func Disassemble(data []byte) (*Script, error) {
 		offset += instr.Size()
 	}
 
+	// Build instruction offset map first
+	instrOffsets := make(map[int]bool)
+	for i := range script.Instructions {
+		instrOffsets[script.Instructions[i].Offset] = true
+	}
+
 	// Second pass: identify labels from control flow instructions
 	labelOffsets := make(map[int]bool)
 	for i := range script.Instructions {
@@ -52,9 +58,14 @@ func Disassemble(data []byte) (*Script, error) {
 				if IsLabelArgument(instr, j) {
 					// Calculate target offset
 					targetOffset := header.GetLength() + int(instr.Arguments[j].RawValue)*4
-					labelOffsets[targetOffset] = true
-					instr.Arguments[j].IsLabel = true
-					instr.Arguments[j].LabelName = fmt.Sprintf("label_%08X", targetOffset)
+
+					// Only create label if target offset exists in code
+					if instrOffsets[targetOffset] {
+						labelOffsets[targetOffset] = true
+						instr.Arguments[j].IsLabel = true
+						instr.Arguments[j].LabelName = fmt.Sprintf("label_%08X", targetOffset)
+					}
+					// Otherwise, leave as raw value (external function address)
 				}
 			}
 		}
